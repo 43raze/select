@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #2c3e50;
+}
+
+.main {
+  border: 1px solid #ccc;
+  /* background-color: rgb(255, 255, 255); */
+}
+
+.header {
+  text-align: center;
+}
+
+.row {
+  font-size: 0;
+}
+
+.col {
+  font-size: 1rem;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.top-line {
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wrap-select {
+  border: 0px solid;
+  width: 20%;
+  min-width: 180px;
+}
+
+.wrap-select select {
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+  width: calc(100% - 10px);
+  margin: 5px;
+  height: 40px;
+  color: #2c3e50;
+  text-align: center;
+  outline: none;
+  background: transparent;
+}
+
+.content {
+  border: 0px solid;
+  font-size: 0;
+}
+
+.generated-item {
+  border: 1px solid #ccc;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  font-size: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(top, #fff, #fff 0%, #f3f3f3);
+  background: -ms-linear-gradient(top, #fff, #fff 0%, #f3f3f3);
+  background: -moz-linear-gradient(top, #fff, #fff 0%, #f3f3f3);
+  background: linear-gradient('to bottom', #fff, #fff 0%, #f3f3f3);
+}
+
+.generated-item:hover {
+  border: 1px solid #eee;
+}
+
+.generated-item .gi-left-side {
+  border: 0px solid;
+  display: inline-block;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.generated-item .gi-right-side {
+  border: 0px solid;
+  display: inline-block;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.generated-item span {
+  border: 0px solid;
+  margin: 0 5px;
+  font-size: 1.1rem;
+  cursor: default;
+}
+
+.generated-item button {
+  border: 0px solid;
+  background: transparent;
+  margin: 0 0 0 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: deeppink;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.generated-item button:hover {
+  opacity: 50%;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.zero {
+  margin: 0;
+  padding: 0;
+}
+
+/* .content{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.generated-item{
+  border: 1px solid;
+  margin: 5px;
+  padding: 5px;
+  font-size: 0;
+} */
