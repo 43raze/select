@@ -1,46 +1,43 @@
-const selects = document.querySelectorAll('select')
-const buttons = document.querySelectorAll('button')
-const generatedItems = document.querySelectorAll('.generated-item')
+const listSelects = document.querySelectorAll('select')
+const listButtonsDeleteItem = document.querySelectorAll('button')
+const listItems = document.querySelectorAll('.generated-item')
 
-selects.forEach(select => {
+listSelects.forEach(select => {
   select.addEventListener('change', onChangeSelect)
 })
 
-buttons.forEach(button => {
-  button.addEventListener('click', onButtonClickDeleteItem)
+listButtonsDeleteItem.forEach(button => {
+  button.addEventListener('click', onClickButtonDeleteItem)
 })
 
-generatedItems.forEach(item => {
-  item.addEventListener('click', onDivWrapperClick)
+listItems.forEach(item => {
+  item.addEventListener('click', onClickDivItem)
 })
 
 function onChangeSelect(e) {
-  const selectedOption = e.target.value
+  const selectValue = e.target.value
   const selectId = e.target.id
-
-  if (selectedOption) {
-    renderItem(selectedOption, selectId)
-    const selectedIndex = e.target.selectedIndex
-    e.target.selectedIndex = 0
-    e.target.remove(selectedIndex)
-  }
+  renderItem(selectValue, selectId)
+  e.target.remove(e.target.selectedIndex)
+  e.target.value = ''
 }
 
-function onButtonClickDeleteItem(e) {
+function onClickButtonDeleteItem(e) {
   e.stopPropagation()
   const elDivWrapper = e.target.parentElement.parentElement
   elDivWrapper.remove()
 }
 
-function onDivWrapperClick(e) {
-  renderTitle(e.currentTarget)
+function onClickDivItem(e) {
+  const elDivItem = e.currentTarget
+  const elSpan = elDivItem.querySelector('span')
+  const selectId = elDivItem.dataset.selectId
+  renderTitle(elSpan.textContent, selectId)
 }
 
-function renderTitle(elDivWrapper) {
-  const h1Element = document.querySelector('h1')
-  const textValue = elDivWrapper.querySelector('span').textContent
-  const selectId = elDivWrapper.dataset.selectId
-  h1Element.textContent = `${textValue} ${selectId || ''}`
+function renderTitle(textValue, selectId) {
+  const elH1 = document.querySelector('h1')
+  elH1.textContent = `${textValue} ${selectId || ''}`
 }
 
 function renderItem(textValue, selectId) {
@@ -50,7 +47,7 @@ function renderItem(textValue, selectId) {
 }
 
 function generateItem(textValue, selectId) {
-  const elDivWrapper = document.createElement('div')
+  const elDivItem = document.createElement('div')
   const elDivLeft = document.createElement('div')
   const elDivRight = document.createElement('div')
   const elSpan = document.createElement('span')
@@ -59,18 +56,26 @@ function generateItem(textValue, selectId) {
   elSpan.textContent = textValue
   elButton.textContent = 'X'
 
-  elDivWrapper.dataset.selectId = selectId
-  elDivWrapper.classList.add('generated-item')
+  elDivItem.dataset.selectId = selectId
+  elDivItem.classList.add('generated-item')
   elDivLeft.classList.add('gi-left-side')
   elDivRight.classList.add('gi-right-side')
 
-  elButton.addEventListener('click', onButtonClickDeleteItem)
-  elDivWrapper.addEventListener('click', onDivWrapperClick)
+  elButton.addEventListener('click', onClickButtonDeleteItem)
+  elDivItem.addEventListener('click', onClickDivItem)
 
-  elDivWrapper.appendChild(elDivLeft)
-  elDivWrapper.appendChild(elDivRight)
+  elDivItem.appendChild(elDivLeft)
+  elDivItem.appendChild(elDivRight)
   elDivLeft.appendChild(elSpan)
   elDivRight.appendChild(elButton)
 
-  return elDivWrapper
+  return elDivItem
+}
+
+function generateOption(text) {
+  // body
+}
+
+function renderSelect(text) {
+  // body
 }
