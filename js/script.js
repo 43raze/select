@@ -1,5 +1,6 @@
 const selects = document.querySelectorAll('select')
 const buttons = document.querySelectorAll('button')
+const generatedItems = document.querySelectorAll('.generated-item')
 
 selects.forEach((select, index) => {
   select.dataset.selectId = `select-${index + 1}`
@@ -8,6 +9,10 @@ selects.forEach((select, index) => {
 
 buttons.forEach(button => {
   button.addEventListener('click', onButtonClickDeleteItem)
+})
+
+generatedItems.forEach(item => {
+  item.addEventListener('click', onDivWrapperClick)
 })
 
 function onChangeSelect(e) {
@@ -23,6 +28,7 @@ function onChangeSelect(e) {
 }
 
 function onButtonClickDeleteItem(e) {
+  e.stopPropagation()
   const elDivWrapper = e.target.parentElement.parentElement
   elDivWrapper.remove()
 }
@@ -33,9 +39,9 @@ function onDivWrapperClick(e) {
 
 function renderTitle(elDivWrapper) {
   const h1Element = document.querySelector('h1')
-  const textValue = elDivWrapper.querySelector('.gi-left-side span').textContent
+  const textValue = elDivWrapper.querySelector('span').textContent
   const selectId = elDivWrapper.dataset.selectId
-  h1Element.textContent = textValue + ' ' + selectId
+  h1Element.textContent = textValue + ' ' + (selectId ? selectId : '')
 }
 
 function renderItem(textValue, selectId) {
