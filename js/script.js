@@ -24,7 +24,13 @@ function onChangeSelect(e) {
 
 function onClickButtonDeleteItem(e) {
   e.stopPropagation()
+
   const elDivWrapper = e.target.parentElement.parentElement
+  const elSpan = elDivWrapper.querySelector('span')
+  const text = elSpan.textContent
+  const selectId = elDivWrapper.dataset.selectId
+
+  renderSelect(selectId, text, text)
   elDivWrapper.remove()
 }
 
@@ -72,10 +78,15 @@ function generateItem(textValue, selectId) {
   return elDivItem
 }
 
-function generateOption(text) {
-  // body
+function generateOption(text, value) {
+  const elOption = document.createElement('option')
+  elOption.textContent = text
+  elOption.value = value
+  return elOption
 }
 
-function renderSelect(text) {
-  // body
+function renderSelect(selectId, text, value) {
+  const elSelect = document.getElementById(selectId)
+  const option = generateOption(text, value)
+  elSelect.appendChild(option)
 }
