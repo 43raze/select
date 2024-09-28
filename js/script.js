@@ -52,6 +52,12 @@ function renderItem(textValue, selectId) {
   elDivContent.appendChild(elItem)
 }
 
+function renderSelect(selectId, text, value) {
+  const elSelect = document.getElementById(selectId)
+  const option = generateOption(text, value)
+  elSelect.appendChild(option)
+}
+
 function generateItem(textValue, selectId) {
   const elDivItem = document.createElement('div')
   const elDivLeft = document.createElement('div')
@@ -83,10 +89,4 @@ function generateOption(text, value) {
   elOption.textContent = text
   elOption.value = value
   return elOption
-}
-
-function renderSelect(selectId, text, value) {
-  const elSelect = document.getElementById(selectId)
-  const option = generateOption(text, value)
-  elSelect.appendChild(option)
 }
