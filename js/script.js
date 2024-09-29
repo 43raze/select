@@ -30,7 +30,7 @@ function onClickButtonDeleteItem(e) {
   const text = elSpan.textContent
   const selectId = elDivWrapper.dataset.selectId
 
-  renderSelect(selectId, text, text)
+  renderSelect(selectId, text)
   elDivWrapper.remove()
 }
 
@@ -52,9 +52,12 @@ function renderItem(textValue, selectId) {
   elDivContent.appendChild(elItem)
 }
 
-function renderSelect(selectId, text, value) {
+function renderSelect(selectId, text) {
   const elSelect = document.getElementById(selectId)
-  const option = generateOption(text, value)
+
+  if (!elSelect) return null
+
+  const option = generateOption(text)
   elSelect.appendChild(option)
 }
 
@@ -84,9 +87,9 @@ function generateItem(textValue, selectId) {
   return elDivItem
 }
 
-function generateOption(text, value) {
+function generateOption(text) {
   const elOption = document.createElement('option')
   elOption.textContent = text
-  elOption.value = value
+  elOption.value = text
   return elOption
 }
