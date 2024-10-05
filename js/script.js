@@ -57,8 +57,14 @@ function renderSelect(selectId, text) {
 
   if (!elSelect) return null
 
+  const nextValue =
+    'my_value_' +
+    (+text.replace('my_value_', '') + 1).toString().padStart(2, '0')
+
+  const beforeOption = elSelect.querySelector(`[value="${nextValue}"]`)
+
   const option = generateOption(text)
-  elSelect.appendChild(option)
+  elSelect.insertBefore(option, beforeOption)
 }
 
 function generateItem(textValue, selectId) {
