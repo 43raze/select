@@ -57,41 +57,43 @@ function renderSelect(selectId, text) {
 
   if (!elSelect) return null
 
-  const nextValue =
-    'my_value_' +
-    (+text.replace('my_value_', '') + 1).toString().padStart(2, '0')
+  let beforeOption = null
+  let i = +text.replace('my_value_', '')
 
-  const beforeOption = elSelect.querySelector(`[value="${nextValue}"]`)
+  while (!beforeOption && i <= 15) {
+    const nextValue = 'my_value_' + (i++).toString().padStart(2, '0')
+    beforeOption = elSelect.querySelector(`[value="${nextValue}"]`)
+  }
 
   const option = generateOption(text)
   elSelect.insertBefore(option, beforeOption)
 }
 
-function renderSelect(selectId, text) {
-  const elSelect = document.getElementById(selectId)
+// function renderSelect(selectId, text) {
+//   const elSelect = document.getElementById(selectId)
 
-  if (!elSelect) return null
+//   if (!elSelect) return null
 
-  const restoredValueNumber = +text.replace('my_value_', '')
+//   const restoredValueNumber = +text.replace('my_value_', '')
 
-  const options = Array.from(elSelect.querySelectorAll('option'))
+//   const options = Array.from(elSelect.querySelectorAll('option'))
 
-  let i = 0
-  while (
-    i < options.length &&
-    +options[i].value.replace('my_value_', '') < restoredValueNumber
-  ) {
-    i++
-  }
+//   let i = 0
+//   while (
+//     i < options.length &&
+//     +options[i].value.replace('my_value_', '') < restoredValueNumber
+//   ) {
+//     i++
+//   }
 
-  const option = generateOption(text)
+//   const option = generateOption(text)
 
-  if (i < options.length) {
-    elSelect.insertBefore(option, options[i])
-  } else {
-    elSelect.appendChild(option)
-  }
-}
+//   if (i < options.length) {
+//     elSelect.insertBefore(option, options[i])
+//   } else {
+//     elSelect.appendChild(option)
+//   }
+// }
 
 function generateItem(textValue, selectId) {
   const elDivItem = document.createElement('div')
